@@ -1,8 +1,8 @@
-//
-//  StorageManager.swift
-//  SocialGram
-//
-//  Created by Vivek  Garg on 16/12/24.
-//
 
 import Foundation
+import FirebaseStorage
+
+public class StorageManager {
+    
+    static let shared = StorageManager()
+}
