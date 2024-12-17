@@ -7,12 +7,13 @@
 
 import UIKit
 import SafariServices
+struct Constants {
+    static let cornerRadius: CGFloat = 8.0
+}
 
 class LoginViewController: UIViewController {
 
-    struct Constants {
-        static let cornerRadius: CGFloat = 8.0
-    }
+    
     
     private let usernameEmailField: UITextField = {
         let field = UITextField()
@@ -199,7 +200,9 @@ class LoginViewController: UIViewController {
     @objc private func didTapCreateAccountButton() {
         
         let vc = RegistrationViewController()
-        present(vc, animated: true)
+        vc.title = "Create Account"
+        present(UINavigationController(rootViewController: vc), animated: true)
+       // present(vc, animated: true)
     }
 }
 
