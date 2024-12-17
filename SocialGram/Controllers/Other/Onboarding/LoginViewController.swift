@@ -156,6 +156,29 @@ class LoginViewController: UIViewController {
         
         guard let usernameEmail = usernameEmailField.text , !usernameEmail.isEmpty, let password = passwordField.text, !password.isEmpty, password.count >= 8 else {return}
         
+        // Login functionality
+        var email: String?
+        var username: String?
+        
+        if usernameEmail.contains("@"), usernameEmail.contains(".") {
+            email = usernameEmail
+        } else {
+            username = usernameEmail
+        }
+        AuthManager.shared.loginUser(username: username, email: email, password: password) { success in
+            
+            DispatchQueue.main.async {
+                if success {
+                    self.dismiss(animated: true)
+                } else {
+                    // error occured
+                    let alert = UIAlertController(title: "Log in error", message: "We were unable to log you in.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
+        }
+        
     }
     
     @objc private func didTapTermsButton() {
